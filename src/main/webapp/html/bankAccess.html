@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta charset="utf-8">
+<head>
+    <title>云闪付授权</title>
+    <link rel="stylesheet" type="text/css" href="../css/bank.css"/>
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <span class="icon" id="back"></span>
+        云闪付授权
+    </div>
+
+    <div class="topImg">
+        <div class="icon-wrap left">
+            <img src="../img/bank.jpg" class="appImg" alt="银行图标"/>
+        </div>
+        <div class="icon-link"></div>
+        <div class="icon-wrap right">
+            <img src="../img/up.png" class="appImg" alt="云闪付图标"/>
+        </div>
+    </div>
+
+    <div class="info">
+        <p>
+            您同意 <b>云闪付</b> 将获得以下权限:
+        </p>
+        <p>
+            获取您的手机号、实名信息(姓名、证件号) 和 下列银行卡号用于开通云闪付APP账户;
+        </p>
+        <div class="cardList">
+            <div class="card-item">
+                <input name="check-01" id="card-01" type="checkbox" value="" />
+                <label for="card-01">623 **** **** 1234 <span>标准白金卡</span></label>
+
+            </div>
+            <div class="card-item">
+                <input name="check-02" id="card-02" type="checkbox" value="" />
+                <label for="card-02">623 **** **** 1234 <span>腾讯游戏联名卡</span></label>
+
+            </div>
+            <div class="card-item">
+                <input name="check-03" id="card-03" type="checkbox" value="" />
+                <label for="card-03">623 **** **** 1234 <span>饿了么联名卡</span></label>
+
+            </div>
+            <input type="hidden" id="mobile" value="18905565507" />
+        </div>
+    </div>
+
+    <div class="form">
+        <div class="checkWrap">
+            <input name="check" id="agree" type="radio" value="" />
+            <label for="agree">同意</label>
+        </div>
+        <a>《用户授权协议》</a><span>、</span><a>《银联用户服务协议》</a>
+
+        <div class="bottom">
+            <div class="confirmBtn" id="btn">确认授权</div>
+            <a id="cancelBtn" href="javascript:void(0)">暂不授权</a>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/javascript" src="../js/zepto.min.js"></script>
+<script type="text/javascript" src="../js/util.js"></script>
+<script type="text/javascript" src="../js/bankAccess.js"></script>
+
+</body>
+</html>

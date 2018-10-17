@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html class="rootPage">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta charset="utf-8">
+<head>
+    <title>银行服务窗(Demo)</title>
+    <link rel="stylesheet" type="text/css" href="css/bank.css"/>
+</head>
+<body>
+<div class="wrap demo">
+    <div class="top">
+        <img src="img/topBar.png" width="205" height="35"/>
+    </div>
+
+    <div class="content">
+        <img src="img/midContent.png" width="274" height="391"/>
+    </div>
+
+    <div class="footer">
+        <img src="img/botTab.png" width="238" height="55"/>
+        <div class="upLink" id="upContentBtn">
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/zepto.min.js"></script>
+<script type="text/javascript" src="js/util.js"></script>
+<script>
+    $(function(){
+        var _params={
+            userId:'1104'
+        };
+        //经纬度城市
+        var _mock = {
+            latitude: '31.233858',
+            longitude: '121.663881',//经度
+            cityCode: '310000',//城市code
+            cityName:encodeURI('上海'),
+            timestamp:'1528700527'
+        };
+        var _sn='';
+        //var _apiUrl = 'http://172.20.182.221:8787/open-h5/finduser'
+        var _apiUrl=location.origin + '/finduser';
+        // 判断是否已授权(授权直接跳到open.95516.com,未授权跳转到授权页面)
+        $('#upContentBtn').bind('click', function(){
+            $.get(_apiUrl, _params, function(response){
+                var _response = JSON.parse(response)
+                if(response && _response.resp == '00'){
+                    if(_response.params && _response.params.sn){
+                        up.ui.hideLoading();
+                        _sn = _response.params.sn;
+                        if(_sn){
+                            // 跳转到银联优惠的地址
+                            location.href='https://open.95516.com/s/open/outApp/react/index.html#/?sn='+_sn+'&lat='+_mock.latitude+'&lon='+_mock.longitude+'&cityName='+_mock.cityName
+                        } else{
+                            location.href='html/bankAccess.html'
+                        }
+                    } else {
+                        //up.ui.toast(_response.msg);
+                        location.href='html/bankAccess.html'
+                    }
+                } else {
+                    up.ui.toast(_response.msg)
+                }
+
+
+            });
+
+        })
+
+    })
+</script>
+
+</body>
+</html>
