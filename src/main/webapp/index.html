@@ -40,9 +40,10 @@
             cityName:encodeURI('上海'),
             timestamp:'1528700527'
         };
+
         var _sn='';
         //var _apiUrl = 'http://172.20.182.221:8787/open-h5/finduser'
-        var _apiUrl=location.origin + '/finduser';
+        var _apiUrl= location.origin + '/open-h5/finduser';
         // 判断是否已授权(授权直接跳到open.95516.com,未授权跳转到授权页面)
         $('#upContentBtn').bind('click', function(){
             $.get(_apiUrl, _params, function(response){

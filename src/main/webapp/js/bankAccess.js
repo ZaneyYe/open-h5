@@ -29,7 +29,8 @@ $(function(){
                         mobile:mobile
                     };
                     //var _apiUrl = 'http://172.20.182.221:8787/open-h5/binduser'
-                    var _apiUrl = location.origin + '/binduser';
+                    // var _apiUrl = location.origin + '/binduser';
+                    var _apiUrl = location.origin + '/open-h5/binduser';
                     up.ui.loading();
 
                     /** 返回报文格式
