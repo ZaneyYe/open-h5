@@ -1,9 +1,46 @@
 $(function(){
+    function getUrlParams(paraName) {
+        var url = document.location.toString();
+        var arrObj = url.split("?");
+
+        if (arrObj.length > 1) {
+            var arrPara = arrObj[1].split("&");
+            var arr;
+
+            for (var i = 0; i < arrPara.length; i++) {
+                arr = arrPara[i].split("=");
+
+                if (arr != null && arr[0] == paraName) {
+                    return arr[1];
+                }
+            }
+            return "";
+        }
+        else {
+            return "";
+        }
+    }
+
+    var IndUsrId = getUrlParams("userId");
+
+    $("#plusInfo").click(function () {
+        if(this.value == "show"){
+            $("#requestInfo").show();
+            $("#changImg").attr("src","../img/minus.png");
+            this.value = "hide";
+        }else{
+            $("#requestInfo").hide(true);
+            $("#changImg").attr("src","../img/plus.png");
+            this.value = "show";
+        }
+    });
+
     var _flag = true;
     //返回icon
     $('#back,#cancelBtn').click(function(){
         window.history.go(-1);
     });
+
 
     //点击确认授权
     $('#btn').click(function(){
@@ -22,11 +59,17 @@ $(function(){
                 if(_flag){
                     _flag = false;
                     $(this).addClass('gray');
+                    var name = $("#userName").val();
+                    var certifId = $("#certifId").val();
                     var mobile = $("#mobile").val();
+                    var cardNo = $("#userCard").val();
                     //调用请求
                     var _params= {
-                        userId:'1104',
-                        mobile:mobile
+                        userId: IndUsrId,
+                        name: name,
+                        certifId: certifId,
+                        mobile: mobile,
+                        cardNo: cardNo
                     };
                     //var _apiUrl = 'http://172.20.182.221:8787/open-h5/binduser'
                     // var _apiUrl = location.origin + '/binduser';
@@ -48,7 +91,7 @@ $(function(){
                                 $(_this).removeClass('gray');
                                 console.log(_response);
                                 // 跳转到银联优惠的地址
-                                location.href='https://open.95516.com/s/open/outApp/react/index.html#/?sn='+_response.params.sn+'&lat='+_mock.latitude+'&lon='+_mock.longitude+'&cityName='+_mock.cityName
+                                location.href='http://202.101.25.188:10533/s/open/outApp/react/index.html#/?sn='+_response.params.sn+'&lat='+_mock.latitude+'&lon='+_mock.longitude+'&cityName='+_mock.cityName
                             }else{
                                 _flag = true;
                                 $(_this).removeClass('gray');

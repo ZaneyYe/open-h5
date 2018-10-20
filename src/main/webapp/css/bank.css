@@ -226,6 +226,21 @@ html{
     vertical-align: middle;
 }
 
+.requestUserInfo{
+    float:left;
+    margin-right: 10px;
+    line-height: 20px;
+}
+.requestUserInfo input{
+    vertical-align: middle;
+}
+
+.minform{
+    padding:10px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
 
 
 .bottom a{

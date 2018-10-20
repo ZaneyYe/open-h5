@@ -1,13 +1,14 @@
 package com.servlet;
 
-import java.io.IOException;
+import com.test.OpenH5User;
+import org.apache.log4j.Logger;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.test.OpenH5User;
+import java.io.IOException;
 
 /**
  * Servlet implementation class FindUser
@@ -15,7 +16,8 @@ import com.test.OpenH5User;
 @WebServlet("/FindUser")
 public class FindUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static final Logger LOGGER = Logger.getLogger(FindUser.class);
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -36,8 +38,11 @@ public class FindUser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String result = null;
+		//获取传递过来的IndUsrId
+		String indUsrId = request.getParameter("userId");
+		LOGGER.info("request userId:" + indUsrId);
 		try {
-			result = OpenH5User.finduser();
+			result = OpenH5User.finduser(indUsrId);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -28,9 +28,35 @@
 <script type="text/javascript" src="js/zepto.min.js"></script>
 <script type="text/javascript" src="js/util.js"></script>
 <script>
+    function getUrlParams(paraName) {
+        var url = document.location.toString();
+        var arrObj = url.split("?");
+
+        if (arrObj.length > 1) {
+            var arrPara = arrObj[1].split("&");
+            var arr;
+
+            for (var i = 0; i < arrPara.length; i++) {
+                arr = arrPara[i].split("=");
+
+                if (arr != null && arr[0] == paraName) {
+                    return arr[1];
+                }
+            }
+            return "";
+        }
+        else {
+            return "";
+        }
+    }
+
     $(function(){
+        var indUsrId = getUrlParams("userId");
+        if(!indUsrId){
+            indUsrId = "";
+        }
         var _params={
-            userId:'1104'
+            userId: indUsrId
         };
         //经纬度城市
         var _mock = {
@@ -54,13 +80,13 @@
                         _sn = _response.params.sn;
                         if(_sn){
                             // 跳转到银联优惠的地址
-                            location.href='https://open.95516.com/s/open/outApp/react/index.html#/?sn='+_sn+'&lat='+_mock.latitude+'&lon='+_mock.longitude+'&cityName='+_mock.cityName
+                            location.href='http://202.101.25.188:10533/s/open/outApp/react/index.html#/?sn='+_sn+'&lat='+_mock.latitude+'&lon='+_mock.longitude+'&cityName='+_mock.cityName
                         } else{
-                            location.href='html/bankAccess.html'
+                            location.href='html/bankAccess.html?userId='+indUsrId;
                         }
                     } else {
                         //up.ui.toast(_response.msg);
-                        location.href='html/bankAccess.html'
+                        location.href='html/bankAccess.html?userId='+indUsrId;
                     }
                 } else {
                     up.ui.toast(_response.msg)
